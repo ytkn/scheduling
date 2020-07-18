@@ -56,10 +56,10 @@ def init(instance: Instance):
             problem.addConstraint(x[day, staff_id, shift_idx] >= 0)
             problem.addConstraint(x[day, staff_id, shift_idx] <= 0)
 
-    # TODO one shift for a day
     # section_staff
     for staff in instance.staffs:
         staff_idx = staffids.index(staff.id)
+        # one shift for a day
         for day in range(n_days):
             problem.addConstraint(pulp.lpSum(
                 x[day, staff_idx, shift_idx] for shift_idx in range(n_shifts)) <= 1)
@@ -103,7 +103,7 @@ def init(instance: Instance):
 
         # min consecutive days off
         for day in range(n_days):
-            # . This constraint always assumes that there are an infinite number of consecutive days off assigned at the end of the previous planning period and at the start of the next planning period.
+            # This constraint always assumes that there are an infinite number of consecutive days off assigned at the end of the previous planning period and at the start of the next planning period.
             if day + staff.min_consecutive_days_off >= n_days:
                 continue
             problem.addConstraint(
@@ -132,7 +132,7 @@ def init(instance: Instance):
 
 
 def main():
-    instance = instance_reader.read_instance_from_text("Instance1.txt")
+    instance = instance_reader.read_instance_from_text("Instance2.txt")
     init(instance)
 
 
