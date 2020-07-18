@@ -149,16 +149,23 @@ def solve(instance: Instance):
     print(pulp.LpStatus[status])
     print("objective value = {}".format(pulp.value(problem.objective)))
 
+    ans = np.zeros([n_days, n_staffs, n_shifts])
+
+    for i, j, k in itertools.product(range(n_days), range(n_staffs), range(n_shifts)):
+        ans[i, j, k] = pulp.value(x[i, j, k])
+
     for i in range(n_days):
         print(f"day:{i}", end=" ")
         for j, k in itertools.product(range(n_staffs), range(n_shifts)):
             print("{}:{}".format(j, pulp.value(x[i, j, k])), end=" ")
         print(pulp.value(t[i]))
 
+    return ans
+
 
 def main():
     instance = instance_reader.read_instance_from_text("Instance2.txt")
-    solve(instance)
+    print(solve(instance))
 
 
 if __name__ == "__main__":
