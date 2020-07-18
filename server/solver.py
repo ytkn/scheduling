@@ -1,8 +1,7 @@
 import numpy as np
 import pulp
 import itertools
-import instance_reader
-from instance_reader import Instance
+from instance import Instance
 from typing import List, Set, Dict
 
 
@@ -154,19 +153,10 @@ def solve(instance: Instance):
     for i, j, k in itertools.product(range(n_days), range(n_staffs), range(n_shifts)):
         ans[i, j, k] = pulp.value(x[i, j, k])
 
-    for i in range(n_days):
-        print(f"day:{i}", end=" ")
-        for j, k in itertools.product(range(n_staffs), range(n_shifts)):
-            print("{}:{}".format(j, pulp.value(x[i, j, k])), end=" ")
-        print(pulp.value(t[i]))
+    # for i in range(n_days):
+    #     print(f"day:{i}", end=" ")
+    #     for j, k in itertools.product(range(n_staffs), range(n_shifts)):
+    #         print("{}:{}".format(j, pulp.value(x[i, j, k])), end=" ")
+    #     print(pulp.value(t[i]))
 
     return ans
-
-
-def main():
-    instance = instance_reader.read_instance_from_text("Instance2.txt")
-    print(solve(instance))
-
-
-if __name__ == "__main__":
-    main()
