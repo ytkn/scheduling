@@ -1,0 +1,1070 @@
+{
+  "SchedulingPeriod": {
+    "{http://www.w3.org/2001/XMLSchema-instance}noNamespaceSchemaLocation": "SchedulingPeriod-3.0.xsd",
+    "StartDate": "2014-01-06",
+    "EndDate": "2014-01-19",
+    "ShiftTypes": {
+      "Shift": {
+        "ID": "D",
+        "Color": "Chartreuse",
+        "StartTime": "9:0",
+        "Duration": "480"
+      }
+    },
+    "Contracts": {
+      "Contract": [
+        {
+          "ID": "All",
+          "MinRestTime": {
+            "label": "At least 840 minutes rest after a shift",
+            "content": "840"
+          }
+        },
+        {
+          "ID": "A",
+          "MaxSeq": {
+            "label": "Max 5 consecutive shifts",
+            "value": "5",
+            "shift": "$"
+          },
+          "MinSeq": [
+            {
+              "label": "Min 2 consecutive shifts",
+              "value": "2",
+              "shift": "$"
+            },
+            {
+              "label": "Min 2 consecutive days off",
+              "value": "2",
+              "shift": "-"
+            }
+          ],
+          "Workload": {
+            "TimeUnits": [
+              {
+                "Max": {
+                  "Count": "4320",
+                  "Label": "Max 4320 mins"
+                }
+              },
+              {
+                "Min": {
+                  "Count": "3360",
+                  "Label": "Min 3360 mins"
+                }
+              }
+            ]
+          },
+          "Patterns": {
+            "Match": {
+              "Max": {
+                "Count": "1",
+                "Label": "Max 1 weekends"
+              },
+              "Pattern": [
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "$",
+                    "-"
+                  ]
+                },
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "-",
+                    "$"
+                  ]
+                },
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "$",
+                    "$"
+                  ]
+                }
+              ]
+            }
+          },
+          "ValidShifts": {
+            "shift": "D,"
+          }
+        },
+        {
+          "ID": "B",
+          "MaxSeq": {
+            "label": "Max 5 consecutive shifts",
+            "value": "5",
+            "shift": "$"
+          },
+          "MinSeq": [
+            {
+              "label": "Min 2 consecutive shifts",
+              "value": "2",
+              "shift": "$"
+            },
+            {
+              "label": "Min 2 consecutive days off",
+              "value": "2",
+              "shift": "-"
+            }
+          ],
+          "Workload": {
+            "TimeUnits": [
+              {
+                "Max": {
+                  "Count": "4320",
+                  "Label": "Max 4320 mins"
+                }
+              },
+              {
+                "Min": {
+                  "Count": "3360",
+                  "Label": "Min 3360 mins"
+                }
+              }
+            ]
+          },
+          "Patterns": {
+            "Match": {
+              "Max": {
+                "Count": "1",
+                "Label": "Max 1 weekends"
+              },
+              "Pattern": [
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "$",
+                    "-"
+                  ]
+                },
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "-",
+                    "$"
+                  ]
+                },
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "$",
+                    "$"
+                  ]
+                }
+              ]
+            }
+          },
+          "ValidShifts": {
+            "shift": "D,"
+          }
+        },
+        {
+          "ID": "C",
+          "MaxSeq": {
+            "label": "Max 5 consecutive shifts",
+            "value": "5",
+            "shift": "$"
+          },
+          "MinSeq": [
+            {
+              "label": "Min 2 consecutive shifts",
+              "value": "2",
+              "shift": "$"
+            },
+            {
+              "label": "Min 2 consecutive days off",
+              "value": "2",
+              "shift": "-"
+            }
+          ],
+          "Workload": {
+            "TimeUnits": [
+              {
+                "Max": {
+                  "Count": "4320",
+                  "Label": "Max 4320 mins"
+                }
+              },
+              {
+                "Min": {
+                  "Count": "3360",
+                  "Label": "Min 3360 mins"
+                }
+              }
+            ]
+          },
+          "Patterns": {
+            "Match": {
+              "Max": {
+                "Count": "1",
+                "Label": "Max 1 weekends"
+              },
+              "Pattern": [
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "$",
+                    "-"
+                  ]
+                },
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "-",
+                    "$"
+                  ]
+                },
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "$",
+                    "$"
+                  ]
+                }
+              ]
+            }
+          },
+          "ValidShifts": {
+            "shift": "D,"
+          }
+        },
+        {
+          "ID": "D",
+          "MaxSeq": {
+            "label": "Max 5 consecutive shifts",
+            "value": "5",
+            "shift": "$"
+          },
+          "MinSeq": [
+            {
+              "label": "Min 2 consecutive shifts",
+              "value": "2",
+              "shift": "$"
+            },
+            {
+              "label": "Min 2 consecutive days off",
+              "value": "2",
+              "shift": "-"
+            }
+          ],
+          "Workload": {
+            "TimeUnits": [
+              {
+                "Max": {
+                  "Count": "4320",
+                  "Label": "Max 4320 mins"
+                }
+              },
+              {
+                "Min": {
+                  "Count": "3360",
+                  "Label": "Min 3360 mins"
+                }
+              }
+            ]
+          },
+          "Patterns": {
+            "Match": {
+              "Max": {
+                "Count": "1",
+                "Label": "Max 1 weekends"
+              },
+              "Pattern": [
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "$",
+                    "-"
+                  ]
+                },
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "-",
+                    "$"
+                  ]
+                },
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "$",
+                    "$"
+                  ]
+                }
+              ]
+            }
+          },
+          "ValidShifts": {
+            "shift": "D,"
+          }
+        },
+        {
+          "ID": "E",
+          "MaxSeq": {
+            "label": "Max 5 consecutive shifts",
+            "value": "5",
+            "shift": "$"
+          },
+          "MinSeq": [
+            {
+              "label": "Min 2 consecutive shifts",
+              "value": "2",
+              "shift": "$"
+            },
+            {
+              "label": "Min 2 consecutive days off",
+              "value": "2",
+              "shift": "-"
+            }
+          ],
+          "Workload": {
+            "TimeUnits": [
+              {
+                "Max": {
+                  "Count": "4320",
+                  "Label": "Max 4320 mins"
+                }
+              },
+              {
+                "Min": {
+                  "Count": "3360",
+                  "Label": "Min 3360 mins"
+                }
+              }
+            ]
+          },
+          "Patterns": {
+            "Match": {
+              "Max": {
+                "Count": "1",
+                "Label": "Max 1 weekends"
+              },
+              "Pattern": [
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "$",
+                    "-"
+                  ]
+                },
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "-",
+                    "$"
+                  ]
+                },
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "$",
+                    "$"
+                  ]
+                }
+              ]
+            }
+          },
+          "ValidShifts": {
+            "shift": "D,"
+          }
+        },
+        {
+          "ID": "F",
+          "MaxSeq": {
+            "label": "Max 5 consecutive shifts",
+            "value": "5",
+            "shift": "$"
+          },
+          "MinSeq": [
+            {
+              "label": "Min 2 consecutive shifts",
+              "value": "2",
+              "shift": "$"
+            },
+            {
+              "label": "Min 2 consecutive days off",
+              "value": "2",
+              "shift": "-"
+            }
+          ],
+          "Workload": {
+            "TimeUnits": [
+              {
+                "Max": {
+                  "Count": "4320",
+                  "Label": "Max 4320 mins"
+                }
+              },
+              {
+                "Min": {
+                  "Count": "3360",
+                  "Label": "Min 3360 mins"
+                }
+              }
+            ]
+          },
+          "Patterns": {
+            "Match": {
+              "Max": {
+                "Count": "1",
+                "Label": "Max 1 weekends"
+              },
+              "Pattern": [
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "$",
+                    "-"
+                  ]
+                },
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "-",
+                    "$"
+                  ]
+                },
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "$",
+                    "$"
+                  ]
+                }
+              ]
+            }
+          },
+          "ValidShifts": {
+            "shift": "D,"
+          }
+        },
+        {
+          "ID": "G",
+          "MaxSeq": {
+            "label": "Max 5 consecutive shifts",
+            "value": "5",
+            "shift": "$"
+          },
+          "MinSeq": [
+            {
+              "label": "Min 2 consecutive shifts",
+              "value": "2",
+              "shift": "$"
+            },
+            {
+              "label": "Min 2 consecutive days off",
+              "value": "2",
+              "shift": "-"
+            }
+          ],
+          "Workload": {
+            "TimeUnits": [
+              {
+                "Max": {
+                  "Count": "4320",
+                  "Label": "Max 4320 mins"
+                }
+              },
+              {
+                "Min": {
+                  "Count": "3360",
+                  "Label": "Min 3360 mins"
+                }
+              }
+            ]
+          },
+          "Patterns": {
+            "Match": {
+              "Max": {
+                "Count": "1",
+                "Label": "Max 1 weekends"
+              },
+              "Pattern": [
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "$",
+                    "-"
+                  ]
+                },
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "-",
+                    "$"
+                  ]
+                },
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "$",
+                    "$"
+                  ]
+                }
+              ]
+            }
+          },
+          "ValidShifts": {
+            "shift": "D,"
+          }
+        },
+        {
+          "ID": "H",
+          "MaxSeq": {
+            "label": "Max 5 consecutive shifts",
+            "value": "5",
+            "shift": "$"
+          },
+          "MinSeq": [
+            {
+              "label": "Min 2 consecutive shifts",
+              "value": "2",
+              "shift": "$"
+            },
+            {
+              "label": "Min 2 consecutive days off",
+              "value": "2",
+              "shift": "-"
+            }
+          ],
+          "Workload": {
+            "TimeUnits": [
+              {
+                "Max": {
+                  "Count": "4320",
+                  "Label": "Max 4320 mins"
+                }
+              },
+              {
+                "Min": {
+                  "Count": "3360",
+                  "Label": "Min 3360 mins"
+                }
+              }
+            ]
+          },
+          "Patterns": {
+            "Match": {
+              "Max": {
+                "Count": "1",
+                "Label": "Max 1 weekends"
+              },
+              "Pattern": [
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "$",
+                    "-"
+                  ]
+                },
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "-",
+                    "$"
+                  ]
+                },
+                {
+                  "StartDay": "Saturday",
+                  "Shift": [
+                    "$",
+                    "$"
+                  ]
+                }
+              ]
+            }
+          },
+          "ValidShifts": {
+            "shift": "D,"
+          }
+        }
+      ]
+    },
+    "Employees": {
+      "Employee": [
+        {
+          "ID": "A",
+          "ContractID": [
+            "All",
+            "A"
+          ]
+        },
+        {
+          "ID": "B",
+          "ContractID": [
+            "All",
+            "B"
+          ]
+        },
+        {
+          "ID": "C",
+          "ContractID": [
+            "All",
+            "C"
+          ]
+        },
+        {
+          "ID": "D",
+          "ContractID": [
+            "All",
+            "D"
+          ]
+        },
+        {
+          "ID": "E",
+          "ContractID": [
+            "All",
+            "E"
+          ]
+        },
+        {
+          "ID": "F",
+          "ContractID": [
+            "All",
+            "F"
+          ]
+        },
+        {
+          "ID": "G",
+          "ContractID": [
+            "All",
+            "G"
+          ]
+        },
+        {
+          "ID": "H",
+          "ContractID": [
+            "All",
+            "H"
+          ]
+        }
+      ]
+    },
+    "FixedAssignments": {
+      "Employee": [
+        {
+          "EmployeeID": "A",
+          "Assign": {
+            "Shift": "-",
+            "Day": "0"
+          }
+        },
+        {
+          "EmployeeID": "B",
+          "Assign": {
+            "Shift": "-",
+            "Day": "5"
+          }
+        },
+        {
+          "EmployeeID": "C",
+          "Assign": {
+            "Shift": "-",
+            "Day": "8"
+          }
+        },
+        {
+          "EmployeeID": "D",
+          "Assign": {
+            "Shift": "-",
+            "Day": "2"
+          }
+        },
+        {
+          "EmployeeID": "E",
+          "Assign": {
+            "Shift": "-",
+            "Day": "9"
+          }
+        },
+        {
+          "EmployeeID": "F",
+          "Assign": {
+            "Shift": "-",
+            "Day": "5"
+          }
+        },
+        {
+          "EmployeeID": "G",
+          "Assign": {
+            "Shift": "-",
+            "Day": "1"
+          }
+        },
+        {
+          "EmployeeID": "H",
+          "Assign": {
+            "Shift": "-",
+            "Day": "7"
+          }
+        }
+      ]
+    },
+    "ShiftOffRequests": {
+      "ShiftOff": [
+        {
+          "weight": "1",
+          "Shift": "D",
+          "EmployeeID": "C",
+          "Day": "12"
+        },
+        {
+          "weight": "1",
+          "Shift": "D",
+          "EmployeeID": "C",
+          "Day": "13"
+        },
+        {
+          "weight": "3",
+          "Shift": "D",
+          "EmployeeID": "F",
+          "Day": "8"
+        },
+        {
+          "weight": "3",
+          "Shift": "D",
+          "EmployeeID": "H",
+          "Day": "2"
+        },
+        {
+          "weight": "3",
+          "Shift": "D",
+          "EmployeeID": "H",
+          "Day": "3"
+        }
+      ]
+    },
+    "ShiftOnRequests": {
+      "ShiftOn": [
+        {
+          "weight": "2",
+          "Shift": "D",
+          "EmployeeID": "A",
+          "Day": "2"
+        },
+        {
+          "weight": "2",
+          "Shift": "D",
+          "EmployeeID": "A",
+          "Day": "3"
+        },
+        {
+          "weight": "3",
+          "Shift": "D",
+          "EmployeeID": "B",
+          "Day": "0"
+        },
+        {
+          "weight": "3",
+          "Shift": "D",
+          "EmployeeID": "B",
+          "Day": "1"
+        },
+        {
+          "weight": "3",
+          "Shift": "D",
+          "EmployeeID": "B",
+          "Day": "2"
+        },
+        {
+          "weight": "3",
+          "Shift": "D",
+          "EmployeeID": "B",
+          "Day": "3"
+        },
+        {
+          "weight": "3",
+          "Shift": "D",
+          "EmployeeID": "B",
+          "Day": "4"
+        },
+        {
+          "weight": "1",
+          "Shift": "D",
+          "EmployeeID": "C",
+          "Day": "0"
+        },
+        {
+          "weight": "1",
+          "Shift": "D",
+          "EmployeeID": "C",
+          "Day": "1"
+        },
+        {
+          "weight": "1",
+          "Shift": "D",
+          "EmployeeID": "C",
+          "Day": "2"
+        },
+        {
+          "weight": "1",
+          "Shift": "D",
+          "EmployeeID": "C",
+          "Day": "3"
+        },
+        {
+          "weight": "1",
+          "Shift": "D",
+          "EmployeeID": "C",
+          "Day": "4"
+        },
+        {
+          "weight": "2",
+          "Shift": "D",
+          "EmployeeID": "D",
+          "Day": "8"
+        },
+        {
+          "weight": "2",
+          "Shift": "D",
+          "EmployeeID": "D",
+          "Day": "9"
+        },
+        {
+          "weight": "2",
+          "Shift": "D",
+          "EmployeeID": "F",
+          "Day": "0"
+        },
+        {
+          "weight": "2",
+          "Shift": "D",
+          "EmployeeID": "F",
+          "Day": "1"
+        },
+        {
+          "weight": "1",
+          "Shift": "D",
+          "EmployeeID": "H",
+          "Day": "9"
+        },
+        {
+          "weight": "1",
+          "Shift": "D",
+          "EmployeeID": "H",
+          "Day": "10"
+        },
+        {
+          "weight": "1",
+          "Shift": "D",
+          "EmployeeID": "H",
+          "Day": "11"
+        },
+        {
+          "weight": "1",
+          "Shift": "D",
+          "EmployeeID": "H",
+          "Day": "12"
+        },
+        {
+          "weight": "1",
+          "Shift": "D",
+          "EmployeeID": "H",
+          "Day": "13"
+        }
+      ]
+    },
+    "CoverRequirements": {
+      "DateSpecificCover": [
+        {
+          "Day": "0",
+          "Cover": {
+            "Shift": "D",
+            "Min": {
+              "weight": "100",
+              "content": "5"
+            },
+            "Max": {
+              "weight": "1",
+              "content": "5"
+            }
+          }
+        },
+        {
+          "Day": "1",
+          "Cover": {
+            "Shift": "D",
+            "Min": {
+              "weight": "100",
+              "content": "7"
+            },
+            "Max": {
+              "weight": "1",
+              "content": "7"
+            }
+          }
+        },
+        {
+          "Day": "2",
+          "Cover": {
+            "Shift": "D",
+            "Min": {
+              "weight": "100",
+              "content": "6"
+            },
+            "Max": {
+              "weight": "1",
+              "content": "6"
+            }
+          }
+        },
+        {
+          "Day": "3",
+          "Cover": {
+            "Shift": "D",
+            "Min": {
+              "weight": "100",
+              "content": "4"
+            },
+            "Max": {
+              "weight": "1",
+              "content": "4"
+            }
+          }
+        },
+        {
+          "Day": "4",
+          "Cover": {
+            "Shift": "D",
+            "Min": {
+              "weight": "100",
+              "content": "5"
+            },
+            "Max": {
+              "weight": "1",
+              "content": "5"
+            }
+          }
+        },
+        {
+          "Day": "5",
+          "Cover": {
+            "Shift": "D",
+            "Min": {
+              "weight": "100",
+              "content": "5"
+            },
+            "Max": {
+              "weight": "1",
+              "content": "5"
+            }
+          }
+        },
+        {
+          "Day": "6",
+          "Cover": {
+            "Shift": "D",
+            "Min": {
+              "weight": "100",
+              "content": "5"
+            },
+            "Max": {
+              "weight": "1",
+              "content": "5"
+            }
+          }
+        },
+        {
+          "Day": "7",
+          "Cover": {
+            "Shift": "D",
+            "Min": {
+              "weight": "100",
+              "content": "6"
+            },
+            "Max": {
+              "weight": "1",
+              "content": "6"
+            }
+          }
+        },
+        {
+          "Day": "8",
+          "Cover": {
+            "Shift": "D",
+            "Min": {
+              "weight": "100",
+              "content": "7"
+            },
+            "Max": {
+              "weight": "1",
+              "content": "7"
+            }
+          }
+        },
+        {
+          "Day": "9",
+          "Cover": {
+            "Shift": "D",
+            "Min": {
+              "weight": "100",
+              "content": "4"
+            },
+            "Max": {
+              "weight": "1",
+              "content": "4"
+            }
+          }
+        },
+        {
+          "Day": "10",
+          "Cover": {
+            "Shift": "D",
+            "Min": {
+              "weight": "100",
+              "content": "2"
+            },
+            "Max": {
+              "weight": "1",
+              "content": "2"
+            }
+          }
+        },
+        {
+          "Day": "11",
+          "Cover": {
+            "Shift": "D",
+            "Min": {
+              "weight": "100",
+              "content": "5"
+            },
+            "Max": {
+              "weight": "1",
+              "content": "5"
+            }
+          }
+        },
+        {
+          "Day": "12",
+          "Cover": {
+            "Shift": "D",
+            "Min": {
+              "weight": "100",
+              "content": "6"
+            },
+            "Max": {
+              "weight": "1",
+              "content": "6"
+            }
+          }
+        },
+        {
+          "Day": "13",
+          "Cover": {
+            "Shift": "D",
+            "Min": {
+              "weight": "100",
+              "content": "4"
+            },
+            "Max": {
+              "weight": "1",
+              "content": "4"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
