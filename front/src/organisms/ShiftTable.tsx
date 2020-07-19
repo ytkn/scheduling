@@ -92,7 +92,7 @@ const ShiftTable: React.FC<Props> = ({ instance, solution }: Props) => {
               <td>{`staff ${staff.id}`}</td>
               {days.map((day) => {
                 const hasViolation =
-                  (hasOffRequest(day, staffIdx) && solution[day][staffIdx].find(x => x === 1)) ||
+                  (hasOffRequest(day, staffIdx) && shiftString(solution[day][staffIdx]) === getOffRequest(day, staffIdx).shift_id) ||
                   (hasOnRequest(day, staffIdx) && shiftString(solution[day][staffIdx]) !== getOnRequest(day, staffIdx).shift_id)
                 const penalty =
                   hasViolation && ((hasOffRequest(day, staffIdx) && getOffRequest(day, staffIdx).weight) ||
@@ -105,6 +105,7 @@ const ShiftTable: React.FC<Props> = ({ instance, solution }: Props) => {
                   >
                     {`${shiftString(solution[day][staffIdx])}`}
                     {`${hasOnRequest(day, staffIdx) ? '/' + getOnRequest(day, staffIdx).shift_id : ''}`}
+                    {`${hasOffRequest(day, staffIdx) ? '/!' + getOffRequest(day, staffIdx).shift_id : ''}`}
                     {penalty &&
                       <div className={ShiftTablsScss['penaltyBox']}>
                         <div className={ShiftTablsScss['penalty']}>

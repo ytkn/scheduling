@@ -114,6 +114,7 @@ def solve(instance: Instance):
                 <= staff.max_consecutive_shifts)
 
         # min consecutive shifts
+        # TODO fix
         if staff.min_consecutive_shifts > 1:
             for day in range(n_days):
                 # This constraint always assumes that there are an infinite number of consecutive shifts assigned at the end of the previous planning period and at the start of the next planning period.
