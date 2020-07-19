@@ -1,0 +1,84 @@
+
+.penalty{
+  display: none;
+}
+
+.shiftTable{
+  table{
+    border-collapse:collapse;
+    tr{
+    }
+    th{
+      text-align: center;
+      border:1px solid #dedede;
+      padding:2px 5px;
+    }
+    td{
+      border:1px solid #dedede;
+      min-width: 50px;
+      text-align: center;
+      padding:2px 5px;
+    }
+    td:hover{
+      .penaltyBox{
+        position: relative;
+        .penalty {
+          display: block;
+        }
+      }
+    }
+  }
+  &__name{
+    font-weight: bold;
+  }
+  &__cell{
+    &--red{
+      background: red;
+    }
+    &--pink{
+      background: pink;
+    }
+    &--yellow{
+      background: yellow;
+    }
+    &--lightblue{
+      background: lightskyblue;
+    }
+    &--lightgreen{
+      background: lightgreen;
+    }
+  }
+
+  .legend{
+    display: flex;
+    justify-content: left;
+    height: 30px;
+    vertical-align: middle;
+
+    &__box{
+      height: 100%;
+      width:70px;
+      margin-right: 20px;
+
+      &--red{
+        background: red;
+      }
+
+      &--pink{
+        background: pink;
+      }
+
+      &--yellow{
+        background: yellow;
+      }
+
+      &--lightblue{
+        background: lightskyblue;
+      }
+
+      &--lightgreen{
+        background: lightgreen;
+      }
+    }
+  }
+}
