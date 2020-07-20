@@ -152,3 +152,7 @@ def read_instance_from_text(filename) -> Instance:
     off_requests = read_off_requests(path)
     section_covers = read_section_covers(path)
     return Instance(days, shifts, staffs, days_off, on_requests, off_requests, section_covers)
+
+
+def list_instances() -> List[str]:
+    return list(filter(lambda x: ".txt" in x,  os.listdir(instance_dir)))

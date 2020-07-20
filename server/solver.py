@@ -154,10 +154,4 @@ def solve(instance: Instance):
     for i, j, k in itertools.product(range(n_days), range(n_staffs), range(n_shifts)):
         ans[i, j, k] = pulp.value(x[i, j, k])
 
-    # for i in range(n_days):
-    #     print(f"day:{i}", end=" ")
-    #     for j, k in itertools.product(range(n_staffs), range(n_shifts)):
-    #         print("{}:{}".format(j, pulp.value(x[i, j, k])), end=" ")
-    #     print(pulp.value(t[i]))
-
     return ans

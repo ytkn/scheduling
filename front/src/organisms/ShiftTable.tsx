@@ -11,7 +11,7 @@ type Props = {
 
 const ShiftTable: React.FC<Props> = ({ instance, solution }: Props) => {
 
-  const [emphasizeViolation, setEmphasizeViolation] = useState(false)
+  const [emphasizeViolation, setEmphasizeViolation] = useState(true)
 
   const days = Array.from(Array(instance.days).keys())
 
