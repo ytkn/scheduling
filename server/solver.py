@@ -120,22 +120,25 @@ def solve(instance: Instance):
                 # This constraint always assumes that there are an infinite number of consecutive shifts assigned at the end of the previous planning period and at the start of the next planning period.
                 if day + staff.min_consecutive_shifts >= n_days:
                     continue
-
                 problem.addConstraint(
-                    pulp.lpSum(sum([x[day+offset, staff_idx, shift_idx] for shift_idx in range(n_shifts)]) if offset > 0 and offset < staff.min_consecutive_shifts else 1-sum([x[day+offset, staff_idx, shift_idx] for shift_idx in range(n_shifts)])
-                               for offset in range(staff.min_consecutive_shifts+1)) <= staff.min_consecutive_shifts
-                )
+                    sum([x[day, staff_idx, shift_idx] for shift_idx in range(n_shifts)])*(staff.min_consecutive_shifts-1) -
+                    sum([x[day+1, staff_idx, shift_idx] for shift_idx in range(n_shifts)])*(staff.min_consecutive_shifts-1) +
+                    sum([x[day+offset, staff_idx, shift_idx] for offset, shift_idx in
+                         itertools.product(range(2, staff.min_consecutive_shifts+1), range(n_shifts))]) >= 0)
 
         # min consecutive days off
+        # TODO fix
         if staff.min_consecutive_days_off > 1:
             for day in range(n_days):
                 # This constraint always assumes that there are an infinite number of consecutive days off assigned at the end of the previous planning period and at the start of the next planning period.
                 if day + staff.min_consecutive_days_off >= n_days:
                     continue
                 problem.addConstraint(
-                    pulp.lpSum(1-sum([x[day+offset, staff_idx, shift_idx] for shift_idx in range(n_shifts)]) if offset > 0 and offset < staff.min_consecutive_shifts else sum([x[day+offset, staff_idx, shift_idx] for shift_idx in range(n_shifts)])
-                               for offset in range(staff.min_consecutive_days_off+1)) <= staff.min_consecutive_days_off
-                )
+                    sum([x[day, staff_idx, shift_idx] for shift_idx in range(n_shifts)])*(staff.min_consecutive_days_off-1) -
+                    sum([x[day+1, staff_idx, shift_idx] for shift_idx in range(n_shifts)])*(staff.min_consecutive_days_off-1) +
+                    sum([x[day+offset, staff_idx, shift_idx] for offset, shift_idx in
+                         itertools.product(range(2, staff.min_consecutive_days_off+1), range(n_shifts))]) <= staff.min_consecutive_days_off-1,
+                    name=f"min_consecutive_days_off_{day}_{staff.id}")
 
         # max weekends
         for weekend_comb in weekend_combs:
