@@ -76,7 +76,8 @@ def read_days_off(path) -> List[DayOff]:
                 is_in_section = True
             elif not(len(s_line) == 0 or s_line[0] == '#') and is_in_section:
                 l = s_line.split(',')
-                ans.append(DayOff(l[0], int(l[1])))
+                for i in range(1, len(l)):
+                    ans.append(DayOff(l[0], int(l[i])))
             elif len(s_line) == 0 and is_in_section:
                 break
             s_line = f.readline()

@@ -99,7 +99,9 @@ const ShiftPage: React.FC = () => {
           </div>
         )}
       </div>
-      {!isLoading && instanceName && <ShiftTable instance={instance} solution={solution} />}
+      {!isLoading &&
+        instanceName &&
+        <ShiftTable instance={instance} solution={solution} />}
       {isLoading && <Loading />}
     </div>)
 }

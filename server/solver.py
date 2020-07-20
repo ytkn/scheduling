@@ -114,7 +114,6 @@ def solve(instance: Instance):
                 <= staff.max_consecutive_shifts)
 
         # min consecutive shifts
-        # TODO fix
         if staff.min_consecutive_shifts > 1:
             for day in range(n_days):
                 # This constraint always assumes that there are an infinite number of consecutive shifts assigned at the end of the previous planning period and at the start of the next planning period.
@@ -124,10 +123,10 @@ def solve(instance: Instance):
                     sum([x[day, staff_idx, shift_idx] for shift_idx in range(n_shifts)])*(staff.min_consecutive_shifts-1) -
                     sum([x[day+1, staff_idx, shift_idx] for shift_idx in range(n_shifts)])*(staff.min_consecutive_shifts-1) +
                     sum([x[day+offset, staff_idx, shift_idx] for offset, shift_idx in
-                         itertools.product(range(2, staff.min_consecutive_shifts+1), range(n_shifts))]) >= 0)
+                         itertools.product(range(2, staff.min_consecutive_shifts+1), range(n_shifts))]) >= 0,
+                    name=f"min_consecutive_shifts_{day}_{staff.id}")
 
         # min consecutive days off
-        # TODO fix
         if staff.min_consecutive_days_off > 1:
             for day in range(n_days):
                 # This constraint always assumes that there are an infinite number of consecutive days off assigned at the end of the previous planning period and at the start of the next planning period.
@@ -148,6 +147,7 @@ def solve(instance: Instance):
                 <= staff.max_weekends)
 
     print(problem.constraints)
+    problem.setSolver(pulp.PULP_CBC_CMD(timeLimit=100))
     status = problem.solve()
     print(pulp.LpStatus[status])
     print("objective value = {}".format(pulp.value(problem.objective)))
