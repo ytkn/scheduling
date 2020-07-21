@@ -147,7 +147,7 @@ def solve(instance: Instance):
                 <= staff.max_weekends)
 
     print(problem.constraints)
-    problem.setSolver(pulp.PULP_CBC_CMD(timeLimit=100))
+    problem.setSolver(pulp.PULP_CBC_CMD(timeLimit=500))
     status = problem.solve()
     print(pulp.LpStatus[status])
     print("objective value = {}".format(pulp.value(problem.objective)))

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Instance, ShiftRequest, SectionScover } from "../types/instance"
 import ShiftTablsScss from "../css/ShiftTable.scss"
 import Legend from '../molecules/Legend';
-import Balloon from '../atoms/Balloon';
+import ShiftCell from '../molecules/ShiftCell';
+import ShiftCoverCell from '../molecules/ShiftCoverCell';
 
 type Props = {
   instance: Instance,
@@ -68,13 +69,18 @@ const ShiftTable: React.FC<Props> = ({ instance, solution }: Props) => {
   const shiftCount = (staffIdx: number, shiftIdx: number): number =>
     days.map(day => solution[day][staffIdx][shiftIdx]).reduce((a, b) => a + b)
 
+  const shiftCoverPenlty = (day: number, shiftIdx: number, cover: SectionScover): number =>
+    Math.max(
+      (shiftCover(day, shiftIdx) - cover.requirement) * cover.weight_for_over,
+      (cover.requirement - shiftCover(day, shiftIdx)) * cover.weight_for_under)
+
   return (
     <div className={ShiftTablsScss['shiftTable']}>
       <table>
         <thead>
           <tr>
             <th></th>
-            {days.map(day => <th>{day}</th>)}
+            {days.map(day => <th key={day}>{day}</th>)}
             <th>min total minutes</th>
             <th>max total minutes</th>
             <th>total minutes</th>
@@ -88,7 +94,7 @@ const ShiftTable: React.FC<Props> = ({ instance, solution }: Props) => {
         </thead>
         <tbody>
           {instance.staffs.map((staff, staffIdx) =>
-            <tr>
+            <tr key={staffIdx}>
               <td>{`staff ${staff.id}`}</td>
               {days.map((day) => {
                 const hasViolation =
@@ -98,21 +104,19 @@ const ShiftTable: React.FC<Props> = ({ instance, solution }: Props) => {
                   hasViolation && ((hasOffRequest(day, staffIdx) && getOffRequest(day, staffIdx).weight) ||
                     (hasOnRequest(day, staffIdx) && getOnRequest(day, staffIdx).weight))
                 return (
-                  <td
-                    className={(hasViolation && emphasizeViolation) ?
+                  <ShiftCell
+                    key={day}
+                    shiftString={shiftString(solution[day][staffIdx])}
+                    hasOnRequest={hasOnRequest(day, staffIdx)}
+                    hasOffRequest={hasOffRequest(day, staffIdx)}
+                    onRequest={getOnRequest(day, staffIdx)}
+                    offRequest={getOffRequest(day, staffIdx)}
+                    penalty={penalty}
+                    style={(hasViolation && emphasizeViolation) ?
                       ShiftTablsScss['shiftTable__cell--red'] :
                       cellStyle(day, staffIdx)}
-                  >
-                    {`${shiftString(solution[day][staffIdx])}`}
-                    {`${hasOnRequest(day, staffIdx) ? '/' + getOnRequest(day, staffIdx).shift_id : ''}`}
-                    {`${hasOffRequest(day, staffIdx) ? '/!' + getOffRequest(day, staffIdx).shift_id : ''}`}
-                    {penalty &&
-                      <div className={ShiftTablsScss['penaltyBox']}>
-                        <div className={ShiftTablsScss['penalty']}>
-                          <Balloon text={`penalty:${penalty}`} />
-                        </div>
-                      </div>}
-                  </td>)
+                  />
+                )
               })}
               <td>{staff.min_total_minutes}</td>
               <td>{staff.max_total_minutes}</td>
@@ -132,20 +136,17 @@ const ShiftTable: React.FC<Props> = ({ instance, solution }: Props) => {
                 {days.map(day => {
                   const cover = sectionCover(day, shiftIdx)
                   const hasViolation = cover.requirement !== shiftCover(day, shiftIdx)
-                  const penalty =
-                    hasViolation && Math.max(
-                      (shiftCover(day, shiftIdx) - cover.requirement) * cover.weight_for_over,
-                      (cover.requirement - shiftCover(day, shiftIdx)) * cover.weight_for_under)
+                  const penalty = hasViolation && shiftCoverPenlty(day, shiftIdx, cover)
+                  const style = (hasViolation && emphasizeViolation) ?
+                    ShiftTablsScss['shiftTable__cell--red'] :
+                    undefined
                   return (
-                    <td className={hasViolation && emphasizeViolation && ShiftTablsScss['shiftTable__cell--red']}>
-                      {cover.requirement}
-                      {penalty &&
-                        <div className={ShiftTablsScss['penaltyBox']}>
-                          <div className={ShiftTablsScss['penalty']}>
-                            <Balloon text={`penalty:${penalty}`} />
-                          </div>
-                        </div>}
-                    </td>)
+                    <ShiftCoverCell
+                      key={day}
+                      style={style}
+                      penalty={penalty}
+                      shiftCover={shiftCover(day, shiftIdx)}
+                    />)
                 })}
               </tr>
               <tr>
@@ -153,20 +154,17 @@ const ShiftTable: React.FC<Props> = ({ instance, solution }: Props) => {
                 {days.map(day => {
                   const cover = sectionCover(day, shiftIdx)
                   const hasViolation = cover.requirement !== shiftCover(day, shiftIdx)
-                  const penalty =
-                    hasViolation && Math.max(
-                      (shiftCover(day, shiftIdx) - cover.requirement) * cover.weight_for_over,
-                      (cover.requirement - shiftCover(day, shiftIdx)) * cover.weight_for_under)
+                  const penalty = hasViolation && shiftCoverPenlty(day, shiftIdx, cover)
+                  const style = (hasViolation && emphasizeViolation) ?
+                    ShiftTablsScss['shiftTable__cell--red'] :
+                    undefined
                   return (
-                    <td className={hasViolation && emphasizeViolation && ShiftTablsScss['shiftTable__cell--red']}>
-                      {shiftCover(day, shiftIdx)}
-                      {penalty &&
-                        <div className={ShiftTablsScss['penaltyBox']}>
-                          <div className={ShiftTablsScss['penalty']}>
-                            <Balloon text={`penalty:${penalty}`} />
-                          </div>
-                        </div>}
-                    </td>)
+                    <ShiftCoverCell
+                      key={day}
+                      style={style}
+                      penalty={penalty}
+                      shiftCover={shiftCover(day, shiftIdx)}
+                    />)
                 })}
               </tr>
             </>
@@ -180,7 +178,8 @@ const ShiftTable: React.FC<Props> = ({ instance, solution }: Props) => {
       <Legend color='red' label='violation' />
       <input
         type="checkbox" checked={emphasizeViolation}
-        onChange={() => setEmphasizeViolation(!emphasizeViolation)} />show violation
+        onChange={() => setEmphasizeViolation(!emphasizeViolation)} />
+        show violation
     </div >)
 }
 

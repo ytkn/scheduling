@@ -26,7 +26,8 @@ class InstanceResource(object):
 
 class InstanceListResource(object):
     def on_get(self, req, resp):
-        instances = [i.replace(".txt", "") for i in list_instances()]
+        instances = sorted([i.replace(".txt", "")
+                            for i in list_instances()], key=lambda x: int(x.replace("Instance", "")))
         resp.body = json.dumps(instances, indent=2)
 
 

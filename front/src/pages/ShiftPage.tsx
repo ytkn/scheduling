@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ShiftTable from '../organisms/ShiftTable';
 import * as shiftApis from '../apis/shiftApis'
 import { Instance } from "../types/instance"
-import ShiftPageScss from "../css/ShiftPage.scss"
-import classnames from 'classnames'
 import Loading from '../atoms/Loading';
+import Selector from '../organisms/Selector';
 
 const ShiftPage: React.FC = () => {
 
@@ -59,46 +58,22 @@ const ShiftPage: React.FC = () => {
   return (
     <div>
       <h1>shift</h1>
-      <div className={ShiftPageScss['selector']}>
-        {instanceNames.map(name =>
-          <div
-            key={name}
-            className={
-              name === instanceName ?
-                classnames([
-                  ShiftPageScss['selector__item--selected'],
-                  ShiftPageScss['selector__item']
-                ]) :
-                ShiftPageScss['selector__item']}
-            onClick={() => {
-              setIsLoading(true)
-              setInstanceName(name)
-            }}
-          >
-            {name}
-          </div>
-        )}
-      </div>
-      <div className={ShiftPageScss['selector']}>
-        {[...solutionNames, "solver"].map(name =>
-          <div
-            key={name}
-            className={
-              name === solutionName ?
-                classnames([
-                  ShiftPageScss['selector__item--selected'],
-                  ShiftPageScss['selector__item']
-                ]) :
-                ShiftPageScss['selector__item']}
-            onClick={() => {
-              setIsLoading(true)
-              setSolutionName(name)
-            }}
-          >
-            {name}
-          </div>
-        )}
-      </div>
+      <Selector
+        choices={instanceNames}
+        currentChoice={instanceName}
+        onChoice={name => {
+          setIsLoading(true)
+          setInstanceName(name)
+        }}
+      />
+      <Selector
+        choices={[...solutionNames, "solver"]}
+        currentChoice={solutionName}
+        onChoice={name => {
+          setIsLoading(true)
+          setSolutionName(name)
+        }}
+      />
       {!isLoading &&
         instanceName &&
         <ShiftTable instance={instance} solution={solution} />}
