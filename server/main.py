@@ -5,6 +5,7 @@ import falcon
 from instance_reader import read_instance_from_text, list_instances
 from solution_reader import read_solution_from_xml, list_solutions
 from encoder import NdArrayEncoder
+import logger
 
 
 class CORSMiddleware:
@@ -46,6 +47,7 @@ class SolutionListResource(object):
 
 
 def main():
+    logger.set_logger()
     from wsgiref import simple_server
     app = falcon.API(middleware=[CORSMiddleware()])
 

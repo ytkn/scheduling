@@ -1,4 +1,6 @@
 server/test.py
+server/test2.py
+server/row.py
 server/matching.py
 /.vscode
 */__pycache__/

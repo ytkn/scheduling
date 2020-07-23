@@ -3,9 +3,12 @@ import pulp
 import itertools
 from instance import Instance
 from typing import List, Set, Dict
+from logger import get_logger
+import json
+import encoder
 
 
-def _generete_weekend_conmb(n_days: int) -> List[List[int]]:
+def __generete_weekend_conmb(n_days: int) -> List[List[int]]:
     n = int(n_days/7)
     return [[j*7+6 if i & (1 << j) else j*7+5 for j in range(n)]
             for i in range(1 << n)]
@@ -14,12 +17,13 @@ def _generete_weekend_conmb(n_days: int) -> List[List[int]]:
 
 
 def solve(instance: Instance):
+    logger = get_logger(__name__)
     shiftids = [shift.id for shift in instance.shifts]
     staffids = [staff.id for staff in instance.staffs]
     n_days = instance.days
     n_staffs = len(instance.staffs)
     n_shifts = len(instance.shifts)
-    weekend_combs = _generete_weekend_conmb(n_days)
+    weekend_combs = __generete_weekend_conmb(n_days)
     problem = pulp.LpProblem(name="scheduling", sense=pulp.LpMinimize)
     x = {(i, j, k): pulp.LpVariable(name='x_{}_{}_{}'.format(i, j, k), cat="Binary")
          for i, j, k in itertools.product(range(n_days), range(n_staffs), range(n_shifts))}
@@ -145,12 +149,12 @@ def solve(instance: Instance):
                 pulp.lpSum(x[day, staff_idx, shift_idx]
                            for day, shift_idx in itertools.product(weekend_comb, range(n_shifts)))
                 <= staff.max_weekends)
-
-    print(problem.constraints)
+    for k, v in problem.constraints.items():
+        logger.debug(f"{k}:{v}")
     problem.setSolver(pulp.PULP_CBC_CMD(timeLimit=500))
     status = problem.solve()
-    print(pulp.LpStatus[status])
-    print("objective value = {}".format(pulp.value(problem.objective)))
+    logger.info(pulp.LpStatus[status])
+    logger.info("objective value = {}".format(pulp.value(problem.objective)))
 
     ans = np.zeros([n_days, n_staffs, n_shifts])
 
